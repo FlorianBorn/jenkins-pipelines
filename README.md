@@ -1,7 +1,7 @@
 # jenkins-pipelines-on-aws
 Udacity Cloud DevOps NanoDegree / Jenkins Pipelines on AWS / Florian Born
 
-# Setup the Infrastructur
+# Setup the Infrastructure
 
 ## Infrastructure Diagram
 
