@@ -1,0 +1,121 @@
+Description: >
+    Florian Born / Udacity Cloud DevOps Inspired Project
+
+Parameters:
+
+    ProjectName:
+        Description: The project name to use for tags or as outputs-prefix 
+        Type: String
+        Default: LifeIsNice
+    VpcCidr:
+        Description: The CIDR of the VPC
+        Type: String
+        Default: "10.0.0.0/16"
+    PublicSubnetCidr:
+        Description: The CIDR of the public subnet
+        Type: String
+        Default: "10.0.0.0/16"
+    PrivateSubnetCidr:
+        Description: The CIDR of the private subnet
+        Type: String
+        Default: "10.0.0.1/16"        
+
+Resources:
+    Vpc:
+        Type: "AWS::EC2::VPC"
+        Properties:
+            CidrBlock: !Ref VpcCidr
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    PublicSubnet:
+        Type: AWS::EC2::Subnet
+        Properties:
+            VpcId: !Ref Vpc
+            CidrBlock: !Ref PublicSubnetCidr
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    PrivateSubnet:
+        Type: AWS::EC2::Subnet
+        Properties:
+            VpcId: !Ref Vpc
+            CidrBlock: !Ref PrivateSubnetCidr
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    Eip1:
+        Type: AWS::EC2::EIP
+        Properties:
+            Domain: vpc
+    Ngw:
+        Type: AWS::EC2::NatGateway
+        Properties:
+            AllocationId: !Ref Eip1
+            SubnetId: !Ref PublicSubnet
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    Igw:
+        Type: AWS::EC2::InternetGateway
+        Properties:
+            Tags:
+                - Key: Name
+                  Value: !Ref ProjectName
+    AttachGateway:
+        Type: AWS::EC2::VPCGatewayAttachment
+        Properties:
+            VpcId: !Ref Vpc
+            InternetGatewayId: !Ref Igw
+
+    # Routing
+    PublicRouteTable:
+        Type: AWS::EC2::RouteTable
+        Properties:
+            VpcId: !Ref Vpc
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    PublicDefaultRoute:
+        Type: AWS::EC2::Route
+        Properties:
+            RouteTableId: !Ref PublicRouteTable
+            DestinationCidrBlock: "0.0.0.0/0"
+            GatewayId: !Ref Igw
+    PublicRouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            SubnetId: !Ref PublicSubnet
+            RouteTableId: !Ref PublicRouteTable
+
+    PrivateRouteTable:
+        Type: AWS::EC2::RouteTable
+        Properties:
+            VpcId: !Ref Vpc
+            Tags:
+              - Key: Name
+                Value: !Ref ProjectName
+    PrivateDefaultRoute:
+        Type: AWS::EC2::Route
+        Properties:
+            RouteTableId: !Ref PrivateRouteTable
+            DestinationCidrBlock: "0.0.0.0/0"
+            GatewayId: !Ref Ngw
+    PrivateRouteAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            SubnetId: !Ref PrivateSubnet
+            RouteTableId: !Ref PrivateRouteTable
+
+Outputs:
+
+    PublicSubnet:
+      Description: "Information about the PublicSubnet"
+      Value: !Ref PublicSubnet
+      Export: 
+          Name:
+              Fn::Join:
+                - "" 
+                - - !Sub ProjectName 
+                  - "-Public-Subnet"
+    
