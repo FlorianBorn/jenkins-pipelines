@@ -1,0 +1,18 @@
+[
+    {
+        "ParameterKey": "ProjectName",
+        "ParameterValue": "Pipeline and Deployments"
+    },
+    {
+        "ParameterKey": "VpcCidr",
+        "ParameterValue": "10.0.0.0/16"
+    },
+    {
+        "ParameterKey": "PublicSubnetCidr",
+        "ParameterValue": "10.0.0.0/24"
+    },
+    {
+        "ParameterKey": "PrivateSubnetCidr",
+        "ParameterValue": "10.0.0.1/24"
+    }
+]
