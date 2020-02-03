@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+    Florian Born / Udacity Cloud DevOps Inspired Project
+    This stack contains the neccessary server infrastructure
+
+Parameters:
+
+    ProjectName:
+      Description: The name of this Project 
+      Type: String
+      Default: -
+
+Resources: 
+# Security Groups
+    LbSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupName: LoadBalancerSecurityGroup
+        GroupDescription: Only allow ingress/egress traffic on port 80 
+        VpcId: 
+          Fn::ImportValue: !Sub ${ProjectName}-Vpc 
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 80
+            ToPort: 80
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        SecurityGroupEgress:
+          - IpProtocol: tcp
+            FromPort: 80 
+            ToPort: 80
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        Tags:
+          - Key: Name
+            Value: !Ref ProjectName 
+
+    ApplicationSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupName:  ApplicationSecurityGroup
+        GroupDescription: Allow outbound traffic; allow inbound traffic only on port 80
+        VpcId: !ImportValue ${ProjectName}-Vpc
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 80
+            ToPort: 80
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        SecurityGroupEgress:
+          - IpProtocol: tcp
+            FromPort: 0 
+            ToPort: 65535
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        Tags:
+          - Key: Name
+            Value: !Ref ProjectName 
+
+    ControllerSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupName:  ControllerSecurityGroup
+        GroupDescription: --
+        VpcId: !ImportValue ${ProjectName}-Vpc
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 22
+            ToPort: 22
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 8080
+            ToPort: 8080
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        SecurityGroupEgress:
+          - IpProtocol: tcp
+            FromPort: 0 
+            ToPort: 65535
+            CidrIp: "0.0.0.0/0"  # change to your private ip-adress for more security
+        Tags:
+          - Key: Name
+            Value: !Ref ProjectName 
+
+# EC2 Instances
+
+Outputs:
