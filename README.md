@@ -1,18 +1,20 @@
-# jenkins-pipelines-on-aws
-Udacity Cloud DevOps NanoDegree / Jenkins Pipelines on AWS / Florian Born
+# jenkins-pipelines
+Udacity Cloud DevOps NanoDegree / Jenkins Pipelines / Florian Born
 
 # Setup the Infrastructure
 
 ## Infrastructure Diagram
 
-### The stack
-- 1 Nginx for LoadBalancing
+### Infrastructure Components 
+- 1 Nginx as Reverse-Proxy
 - 2 Nginx for Serving the Website (Green/Blue)
 - 1 Utility-Server (Anisble, Jenkins)
-- Internet gateway
-- NAT gateway
 
 ## Steps
-1. Create the stack
-2. Setup Webserver as Jenkins Slaves
+1. Run 4 Ubuntu-Base Images
+2. Setup Jenkins and Ansible
+3. Set up the containers to connect via SSH (for Ansible)
+4. Configure the Reverse-Proxy and the Webservers via Ansible
+
+
 
