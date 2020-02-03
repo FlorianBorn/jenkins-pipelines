@@ -1,5 +1,6 @@
 Description: >
     Florian Born / Udacity Cloud DevOps Inspired Project
+    This stack contains the neccessary network infrastructure
 
 Parameters:
 
@@ -51,7 +52,10 @@ Resources:
     Ngw:
         Type: AWS::EC2::NatGateway
         Properties:
-            AllocationId: !Ref Eip1
+            AllocationId:
+                Fn::GetAtt:
+                  - Eip1
+                  - AllocationId
             SubnetId: !Ref PublicSubnet
             Tags:
               - Key: Name
@@ -100,7 +104,7 @@ Resources:
         Properties:
             RouteTableId: !Ref PrivateRouteTable
             DestinationCidrBlock: "0.0.0.0/0"
-            GatewayId: !Ref Ngw
+            NatGatewayId: !Ref Ngw
     PrivateRouteAssociation:
         Type: AWS::EC2::SubnetRouteTableAssociation
         Properties:
@@ -109,6 +113,12 @@ Resources:
 
 Outputs:
 
+    Vpc:
+      Description: Information about the VPC
+      Value: !Ref Vpc
+      Export: 
+          Name: !Sub ${ProjectName}-Vpc
+
     PublicSubnet:
       Description: "Information about the PublicSubnet"
       Value: !Ref PublicSubnet
@@ -116,6 +126,6 @@ Outputs:
           Name:
               Fn::Join:
                 - "" 
-                - - !Sub ProjectName 
+                - - !Sub ${ProjectName}
                   - "-Public-Subnet"
     
