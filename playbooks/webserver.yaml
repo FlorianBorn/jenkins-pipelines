@@ -1,0 +1,44 @@
+---
+- hosts: webservers:reverseproxy
+  vars:
+    ansible_sudo_pass: "0000"
+    host_key_checking: False
+  roles:
+    - nginx
+- hosts: reverseproxy
+  become: yes
+  become_user: root
+  vars:
+    ansible_sudo_pass: "0000"
+    host_key_checking: False
+  roles:
+    - reverseproxy
+- hosts: green
+  vars:
+    ansible_sudo_pass: "0000"
+    host_key_checking: False
+  become: yes
+  become_user: root
+  tasks:
+    - name: copy init html file to green
+      copy:
+        src: green.html
+        dest: /var/www/html/index.html 
+#- hosts: reverse-proxy
+#  vars:
+#    ansible_sudo_pass: "0000"
+#  roles:
+    
+
+#    - name: install nginx
+#     become: yes
+#      become_user: root
+#      apt: 
+#        name: nginx 
+#        state: latest
+#    - name: nginx
+#      become: yes
+#      become_user: root
+#      service:
+#        name: nginx 
+#        state: started

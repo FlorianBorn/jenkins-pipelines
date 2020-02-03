@@ -1,0 +1,15 @@
+---
+- name: copy config files to nginx (green) (sites-available)
+  copy:
+    src: green_conf
+    dest: /etc/nginx/sites-available/
+- name: copy config files to nginx (blue) (sites-available)
+  copy:
+    src: blue_conf
+    dest: /etc/nginx/sites-available/
+- name: set initial config (set route to green)
+  file:
+    src: /etc/nginx/sites-available/green_conf
+    dest: /etc/nginx/sites-enabled/green_conf
+    state: link
+...

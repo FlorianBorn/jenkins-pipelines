@@ -1,0 +1,26 @@
+- name: install nginx
+  become: yes
+  become_user: root
+  apt:
+    name: nginx
+    state: latest
+- name: nginx
+  become: yes
+  become_user: root
+  service:
+    name: nginx
+    state: started
+- name: copy init index.html
+  become: yes
+  become_user: root
+  copy:
+    src: ansible.html
+    dest: /var/www/html/index.html
+- name: restart nginx
+  become: yes
+  become_user: root
+  service:
+    name: nginx
+    state: reloaded
+
+

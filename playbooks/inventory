@@ -1,0 +1,12 @@
+[all:vars]
+ansible_connection=ssh
+ansible_user=ansible
+ansible_ssh_pass="0000"
+
+[webservers]
+dummy ansible_host=172.17.0.8 # dummy
+green ansible_host=172.17.0.6 # green
+blue ansible_host=172.17.0.5 # blue
+
+[reverseproxy]
+172.17.0.4 # loadbalancer
