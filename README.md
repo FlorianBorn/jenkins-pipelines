@@ -15,6 +15,7 @@ Udacity Cloud DevOps NanoDegree / Jenkins Pipelines / Florian Born
 2. Setup Jenkins and Ansible
 3. Set up the containers to connect via SSH (for Ansible)
 4. Configure the Reverse-Proxy and the Webservers via Ansible
+5. Add Jenkins-Slaves
 
 
 
