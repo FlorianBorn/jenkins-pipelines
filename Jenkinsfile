@@ -10,6 +10,7 @@ pipeline {
             agent { label 'green-lbl' }
             steps {
                 echo 'hello from green?'
+                ls
             }
         }
     }
