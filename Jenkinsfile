@@ -20,9 +20,13 @@ pipeline {
       agent {
         label 'green-lbl'
       }
-      environment {
-        active_server = 'green'
+      when {
+        beforeAgent true
+        equals expected: 'green', actual: ACTIVE_HOST
       }
+    //   environment {
+    //     active_server = 'green'
+    //   }
       steps {
         echo 'hello from green?'
         sh 'ls'
@@ -34,10 +38,14 @@ pipeline {
     }
 
     stage('Blue') {
+      agent {
+        label 'blue-lbl'
+      }
       when {
         beforeAgent true
-        equals expected: IDLE_HOST, actual: ACTIVE_HOST
+        equals expected: 'blue', actual: ACTIVE_HOST
       }
+
       steps {
         echo 'Im Blue!'
         sh 'printenv | sort'
@@ -47,8 +55,8 @@ pipeline {
     }
 
   }
-  environment {
-    ACTIVE_HOST = 'cat active-server.txt'
-    IDLE_HOST = 'cat idle-server.txt'
-  }
+//   environment {
+//     ACTIVE_HOST = 'cat active-server.txt'
+//     IDLE_HOST = 'cat idle-server.txt'
+//   }
 }
