@@ -29,6 +29,7 @@ pipeline {
     //   }
       steps {
         echo 'hello from ${env.NODE_NAME}?'
+        echo "hello from ${env.NODE_NAME}?"
         sh 'ls'
         sh 'whoami'
         sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
