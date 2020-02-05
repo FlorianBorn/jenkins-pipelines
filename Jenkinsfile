@@ -6,10 +6,6 @@ pipeline {
     stage('Example') {
       steps {
         echo 'Hello World'
-        script {
-          echo "${hosts.active_host}"
-        }
-
         readFile 'active-server.txt'
       }
     }
