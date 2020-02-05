@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    ACTIVE_HOST = sh "cat active-server.txt"
+    IDLE_HOST = sh "cat idle-server.txt"
+  }
   agent {
     label 'master'
   }
@@ -41,8 +45,5 @@ pipeline {
     }
 
   }
-  environment {
-    ACTIVE_HOST = sh "cat active-server.txt"
-    IDLE_HOST = sh "cat idle-server.txt"
-  }
+
 }
