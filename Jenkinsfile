@@ -22,7 +22,7 @@ pipeline {
       }
       when {
         beforeAgent true
-        equals expected: 'green', actual: ACTIVE_HOST
+        equals expected: 'green', actual: "${hosts.active_host}"
       }
     //   environment {
     //     active_server = 'green'
@@ -32,7 +32,7 @@ pipeline {
         sh 'ls'
         sh 'whoami'
         sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
-        sh 'echo ${active_host}'
+//        sh 'echo ${active_host}'
         sh 'cat active-server.txt'
       }
     }
@@ -43,7 +43,7 @@ pipeline {
       }
       when {
         beforeAgent true
-        equals expected: 'blue', actual: ACTIVE_HOST
+        equals expected: 'blue', actual: "${hosts.active_host}"
       }
 
       steps {
