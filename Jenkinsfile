@@ -17,7 +17,7 @@ pipeline {
         echo 'hello from green?'
         sh 'ls'
         sh 'whoami'
-        sh 'cp website/my-website.html /var/www/html/my-website.html'
+        sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
       }
     }
 
