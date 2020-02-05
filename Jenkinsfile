@@ -11,6 +11,10 @@ pipeline {
     stage('Example') {
       steps {
         echo 'Hello World'
+        script {
+            hosts = load 'hosts.groovy'
+            echp "${hosts.active_host}"
+        }
       }
     }
 
