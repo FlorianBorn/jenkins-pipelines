@@ -6,7 +6,9 @@ pipeline {
     stage('Example') {
       steps {
         echo 'Hello World'
-        readFile 'active-server.txt'
+        //readFile 'active-server.txt'
+        hosts = readYaml file: 'hosts.yaml'
+        echo "${hosts.idle_host"}
         sh 'printenv | sort'
       }
     }
