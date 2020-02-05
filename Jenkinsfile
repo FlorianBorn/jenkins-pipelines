@@ -16,6 +16,7 @@ pipeline {
       steps {
         echo 'hello from green?'
         sh 'ls'
+        sh 'whoami'
         sh 'cp website/my-website.html /var/www/html/my-website.html'
       }
     }
