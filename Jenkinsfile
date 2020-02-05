@@ -33,8 +33,9 @@ pipeline {
         }
         steps {
             echo 'Im Blue!'
-            echo 'active host: ${ACTIVE_HOST}'
-            echo 'idle host: ${IDLE_HOST}'
+            //echo 'active host: ${ACTIVE_HOST}'
+            echo 'active host: $ACTIVE_HOST'
+            echo 'idle host: $IDLE_HOST'
         }
 
     }
