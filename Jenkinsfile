@@ -22,7 +22,7 @@ pipeline {
         sh 'whoami'
         sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
         sh 'echo ${active_host}'
-        sh 'cat active-host.txt'
+        sh 'cat active-server.txt'
       }
     }
 
