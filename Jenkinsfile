@@ -34,9 +34,9 @@ pipeline {
             beforeAgent true
             equals expected: IDLE_HOST, actual: ACTIVE_HOST
         }
-        sh echo "I'm Blue!"
-        sh echo "active host: ${ACTIVE_HOST}"
-        sh echo "idle host: ${IDLE_HOST}"
+        sh echo 'Im Blue!'
+        sh echo 'active host: ${ACTIVE_HOST}'
+        sh echo 'idle host: ${IDLE_HOST}'
     }
 
   }
