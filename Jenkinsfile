@@ -8,7 +8,7 @@ pipeline {
         echo 'Hello World'
         //readFile 'active-server.txt'
         hosts = readYaml file: 'hosts.yaml'
-        echo "${hosts.idle_host"}
+        echo "${hosts.idle_host}"
         sh 'printenv | sort'
       }
     }
