@@ -2,6 +2,10 @@ pipeline {
   agent {
     label 'master'
   }
+  environment {
+      ACTIVE_HOST = ${cat 'active-server.txt'}
+      IDLE_HOST = ${cat 'idle-server.txt'}
+  }
   stages {
     stage('Example') {
       steps {
@@ -24,6 +28,15 @@ pipeline {
         sh 'echo ${active_host}'
         sh 'cat active-server.txt'
       }
+    }
+    stage('Blue') {
+        when {
+            beforeAgent true
+            equals expected: IDLE_HOST, actual: ACTIVE_HOST
+        }
+        sh echo "I'm Blue!"
+        sh echo "active host: ${ACTIVE_HOST}"
+        sh echo "idle host: ${IDLE_HOST}"
     }
 
   }
