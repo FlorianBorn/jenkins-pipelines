@@ -7,8 +7,7 @@ pipeline {
       steps {
         echo 'Hello World'
         script {
-          hosts = load 'hosts.groovy'
-          echp "${hosts.active_host}"
+          echo "${hosts.active_host}"
         }
 
         readFile 'active-server.txt'
@@ -47,7 +46,7 @@ pipeline {
 
   }
   environment {
-    ACTIVE_HOST = "cat active-server.txt"
-    IDLE_HOST = "cat idle-server.txt"
+    ACTIVE_HOST = 'cat active-server.txt'
+    IDLE_HOST = 'cat idle-server.txt'
   }
 }
