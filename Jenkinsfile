@@ -37,6 +37,7 @@ pipeline {
         }
         steps {
             echo 'Im Blue!'
+            sh "printenv | sort"
             //echo 'active host: ${ACTIVE_HOST}'
             echo 'active host: $ACTIVE_HOST'
             echo 'idle host: $IDLE_HOST'
