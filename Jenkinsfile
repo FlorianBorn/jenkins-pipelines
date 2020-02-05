@@ -2,10 +2,7 @@ pipeline {
   agent {
     label 'master'
   }
-  environment {
-      ACTIVE_HOST = "${cat 'active-server.txt'}"
-      IDLE_HOST = "${cat 'idle-server.txt'}"
-  }
+
   stages {
     stage('Example') {
       steps {
@@ -44,6 +41,7 @@ pipeline {
 
   }
   environment {
-    active_host = 'green'
+    ACTIVE_HOST = "${cat 'active-server.txt'}"
+    IDLE_HOST = "${cat 'idle-server.txt'}"
   }
 }
