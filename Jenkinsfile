@@ -1,3 +1,7 @@
+node {
+    hosts = readYaml file: 'hosts.yaml'
+}
+
 pipeline {
   agent {
     label 'master'
@@ -7,7 +11,6 @@ pipeline {
       steps {
         echo 'Hello World'
         //readFile 'active-server.txt'
-        hosts = readYaml file: 'hosts.yaml'
         echo "${hosts.idle_host}"
         sh 'printenv | sort'
       }
