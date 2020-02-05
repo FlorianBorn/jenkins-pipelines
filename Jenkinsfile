@@ -41,7 +41,7 @@ pipeline {
 
   }
   environment {
-    ACTIVE_HOST = sh "cat active-server.txt}"
-    IDLE_HOST = sh "cat idle-server.txt}"
+    ACTIVE_HOST = sh "cat active-server.txt"
+    IDLE_HOST = sh "cat idle-server.txt"
   }
 }
