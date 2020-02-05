@@ -7,6 +7,7 @@ pipeline {
       steps {
         echo 'Hello World'
         readFile 'active-server.txt'
+        sh 'printenv | sort'
       }
     }
 
