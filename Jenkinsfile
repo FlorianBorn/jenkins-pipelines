@@ -1,20 +1,17 @@
 pipeline {
-  environment {
-    ACTIVE_HOST = sh "cat active-server.txt"
-    IDLE_HOST = sh "cat idle-server.txt"
-  }
   agent {
     label 'master'
   }
-
   stages {
     stage('Example') {
       steps {
         echo 'Hello World'
         script {
-            hosts = load 'hosts.groovy'
-            echp "${hosts.active_host}"
+          hosts = load 'hosts.groovy'
+          echp "${hosts.active_host}"
         }
+
+        readFile 'active-server.txt'
       }
     }
 
@@ -34,21 +31,23 @@ pipeline {
         sh 'cat active-server.txt'
       }
     }
-    stage('Blue') {
-        when {
-            beforeAgent true
-            equals expected: IDLE_HOST, actual: ACTIVE_HOST
-        }
-        steps {
-            echo 'Im Blue!'
-            sh "printenv | sort"
-            //echo 'active host: ${ACTIVE_HOST}'
-            echo 'active host: $ACTIVE_HOST'
-            echo 'idle host: $IDLE_HOST'
-        }
 
+    stage('Blue') {
+      when {
+        beforeAgent true
+        equals expected: IDLE_HOST, actual: ACTIVE_HOST
+      }
+      steps {
+        echo 'Im Blue!'
+        sh 'printenv | sort'
+        echo 'active host: $ACTIVE_HOST'
+        echo 'idle host: $IDLE_HOST'
+      }
     }
 
   }
-
+  environment {
+    ACTIVE_HOST = "cat active-server.txt"
+    IDLE_HOST = "cat idle-server.txt"
+  }
 }
