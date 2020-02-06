@@ -7,14 +7,33 @@ pipeline {
     label 'master'
   }
   stages {
+// Configure Infrastructure
+// run Ansible to set up the TARGET infrastructure (reverse-proxy, green, blue)
+
+// Test
+// test HTML with tidy
+
+// ggf. manuell input (approve deployment to production)
+
+// Deploy
+
     stage('Example') {
       steps {
-        echo 'Hello World'
-        //readFile 'active-server.txt'
         echo "${hosts.idle_host}"
-        sh 'printenv | sort'
       }
     }
+
+    stage('Configure Infrastructure') {
+      environment {
+          inventory_name = "inventory"
+          playbook_name = "webserver.yaml"
+      }
+      steps {
+        // Option 1 - Install Ansible Plugin and use the provided steps
+        // Option 2 - use shell commands 
+        sh "ansible-playbook -i ${inventory_name} ${playbook_name}"
+      }
+    }    
 
     stage('Green') {
       agent {
@@ -28,6 +47,7 @@ pipeline {
     //     active_server = 'green'
     //   }
       steps {
+        sh 'printenv | sort'  
         echo 'hello from ${env.NODE_NAME}?'
         echo "hello from ${env.NODE_NAME}?"
         sh 'ls'
