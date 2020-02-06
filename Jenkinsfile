@@ -31,7 +31,9 @@ pipeline {
       steps {
         // Option 1 - Install Ansible Plugin and use the provided steps
         // Option 2 - use shell commands 
-        sh "ansible-playbook -i ${inventory_name} ${playbook_name}"
+        dir("playbooks"){
+            sh "ansible-playbook -i ${inventory_name} ${playbook_name}"
+        }
       }
     }    
 
