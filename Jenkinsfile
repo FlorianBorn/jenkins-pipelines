@@ -36,6 +36,16 @@ pipeline {
         }
       }
     }    
+    stage('Test') {
+        environment {
+            html_dir = "/var/www/html/"
+        }
+        steps {
+            dir(html_dir) {
+                sh "tidy my-website.html"
+            }
+        }
+    }
 
     stage('Green') {
       agent {
