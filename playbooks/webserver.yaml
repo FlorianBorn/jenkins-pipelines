@@ -24,6 +24,17 @@
       copy:
         src: green.html
         dest: /var/www/html/index.html 
+- hosts: webservers
+  vars:
+    ansible_sudo_pass: "0000"
+    host_key_checking: False
+  become: yes
+  become_user: root
+  tasks:
+    - name: install tidy
+      apt:
+        name: tidy    
+        state: latest
 #- hosts: reverse-proxy
 #  vars:
 #    ansible_sudo_pass: "0000"
