@@ -24,6 +24,7 @@ pipeline {
     }
 
     stage('Configure Infrastructure') {
+      agent { label 'master'}
       environment {
           inventory_name = "inventory"
           playbook_name = "webserver.yaml"
@@ -47,7 +48,7 @@ pipeline {
         }
     }
 
-    stage('Green') {
+    stage('Deploy Green') {
       agent {
         label 'green-lbl'
       }
@@ -70,7 +71,7 @@ pipeline {
       }
     }
 
-    stage('Blue') {
+    stage('Deploy Blue') {
       agent {
         label 'blue-lbl'
       }
@@ -85,6 +86,12 @@ pipeline {
         echo 'active host: $ACTIVE_HOST'
         echo 'idle host: $IDLE_HOST'
       }
+    }
+
+    stage('switch') {
+        steps {
+            echo "hi i'm switch!"
+        }
     }
 
   }
