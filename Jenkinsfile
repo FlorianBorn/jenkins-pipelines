@@ -67,9 +67,9 @@ pipeline {
 
         }
     }
-    stage('Test') {
+    // stage('Test') {
 
-    }        
+    // }        
     
 
 //     stage('Deploy Green') {
