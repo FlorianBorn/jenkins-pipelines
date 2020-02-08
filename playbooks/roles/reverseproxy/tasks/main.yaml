@@ -14,7 +14,7 @@
 #     state: link
 - name: template config file to reverse-proxy
   vars:
-    host_name: "{{ green }}"
+    host_ip: "{{ green }}"
     host_port: 80
   template:
       src: conf.j2
