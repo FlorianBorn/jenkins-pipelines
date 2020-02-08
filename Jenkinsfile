@@ -56,14 +56,16 @@ pipeline {
           label "${hosts.idle_host}-lbl"
         }      
         steps {
-          sh 'printenv | sort'  
+          
+ 
           echo 'hello from ${env.NODE_NAME}?'
           echo "hello from ${env.NODE_NAME}?"
-          sh 'ls'
-          sh 'whoami'
-          sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
+          copy("website/my-website.html", "/var/www/html/")
+          // sh 'printenv | sort'           
+          // sh 'ls'
+          // sh 'whoami'
+          // sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
   //        sh 'echo ${active_host}'
-          sh 'cat active-server.txt'
         }
     }        
     
