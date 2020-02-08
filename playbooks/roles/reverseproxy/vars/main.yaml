@@ -1,2 +1,2 @@
-host_name: "{{ green }}"
+host_ip: "{{ green }}"
 host_port: 80
