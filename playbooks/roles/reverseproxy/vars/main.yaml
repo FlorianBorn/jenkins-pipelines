@@ -1,0 +1,2 @@
+host_name: "{{ green }}"
+host_port: 80

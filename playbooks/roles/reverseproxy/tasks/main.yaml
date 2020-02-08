@@ -13,9 +13,9 @@
 #     dest: /etc/nginx/sites-enabled/green_conf
 #     state: link
 - name: template config file to reverse-proxy
-  vars:
-    host_ip: "{{ green }}"
-    host_port: 80
+  # vars:
+  #   host_ip: "{{ green }}"
+  #   host_port: 80
   template:
       src: conf.j2
       dest: /etc/nginx/sites-available/conf
