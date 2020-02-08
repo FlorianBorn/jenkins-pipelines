@@ -9,4 +9,4 @@ green ansible_host=172.17.0.4 # green
 blue ansible_host=172.17.0.5 # blue
 
 [reverseproxy]
-172.17.0.7 # loadbalancer
+172.17.0.6 # loadbalancer
