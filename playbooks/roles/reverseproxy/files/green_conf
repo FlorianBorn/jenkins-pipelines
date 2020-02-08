@@ -2,7 +2,8 @@ server {
         listen 80;
         listen [::]:80;
         location / {
-                proxy_pass http://172.17.0.6:80;
+                #proxy_pass http://172.17.0.6:80;
+                proxy_pass {{hostvars['green']['ansible_facts']['eth0']['ipv4']['address']}};
         }
 }
 
