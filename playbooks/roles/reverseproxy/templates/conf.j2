@@ -3,6 +3,6 @@ server {
         listen [::]:80;
         location / {
                 #proxy_pass http://172.17.0.6:80;
-                proxy_pass {{ hosts_ip }}:{{ host_port }};
+                proxy_pass {{ host_ip }}:{{ host_port }};
         }
 }
