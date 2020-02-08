@@ -1,3 +1,3 @@
 git add .
-git commit -m "feat: micro update (push via script"
+git commit -m "feat: micro update (push via script)"
 git push
