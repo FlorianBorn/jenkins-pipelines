@@ -39,7 +39,7 @@ pipeline {
     }    
     stage('Test') {
         environment {
-            html_dir = "/var/www/html/"
+            html_dir = "website/"
         }
         steps {
             dir(html_dir) {
