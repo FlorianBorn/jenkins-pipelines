@@ -10,7 +10,7 @@
   apt:
     name: nginx
     state: latest
-- name: nginx
+- name: start nginx
   become: yes
   become_user: root
   service:

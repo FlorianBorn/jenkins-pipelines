@@ -16,10 +16,10 @@
   # vars:
   #   host_ip: "{{ green }}"
   #   host_port: 80
-- name: include hosts (active, idle)
-  include_vars:
-      file: common_vars.yaml
-      name: common
+# - name: include hosts (active, idle)
+#   include_vars:
+#       file: common_vars.yaml
+#       name: common
 - name: print variable
   debug:
         msg: "Hello {{common['active_host'] }} world!"
