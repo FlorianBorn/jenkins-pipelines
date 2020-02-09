@@ -1,5 +1,5 @@
 node {
-    //hosts = readYaml file: 'hosts.yaml'
+    hosts = readYaml file: 'hosts.yaml'
 }
 
 pipeline {
@@ -69,7 +69,15 @@ pipeline {
         steps {
           sh 'curl -f http://localhost/my-website.html || exit 1'
         }
-    }        
+    }
+    stage('Switch') {
+        agent {
+          label "reverse-proxy"
+        }
+        steps {
+
+        }
+    }     
     
   }
 
