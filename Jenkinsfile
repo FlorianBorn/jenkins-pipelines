@@ -21,15 +21,15 @@ pipeline {
     stage('Example') {
       environment{
         hosts2 = readYaml(file: 'hosts.yaml')
-        def new_hosts = ['active_host': hosts.active_host,
-                         'idle_host': hosts.idle_host,
-                         'foo': 'bar']
+        
         //hosts['foo'] = 'bar'
         
       }
       steps {
         echo "hey there!"
-        
+        def new_hosts = ['active_host': hosts.active_host,
+                         'idle_host': hosts.idle_host,
+                         'foo': 'bar']
         writeYaml(file: 'host.yaml', data: hosts)  // ['foo':'bar']
         echo(hosts2['foo'])
       }
