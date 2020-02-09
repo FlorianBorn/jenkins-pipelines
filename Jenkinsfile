@@ -1,6 +1,9 @@
 node {
     def hosts = readYaml file: 'hosts.yaml'
     new_active_host = [''] 
+    def new_hosts = ['active_host': hosts.active_host,
+                      'idle_host': hosts.idle_host,
+                      'foo': 'bar']    
 }
 
 pipeline {
@@ -27,9 +30,7 @@ pipeline {
       }
       steps {
         echo "hey there!"
-        def new_hosts = ['active_host': hosts.active_host,
-                         'idle_host': hosts.idle_host,
-                         'foo': 'bar']
+
         writeYaml(file: 'host.yaml', data: hosts)  // ['foo':'bar']
         echo(hosts2['foo'])
       }
