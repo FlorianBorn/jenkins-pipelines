@@ -1,5 +1,5 @@
 node {
-    hosts = readYaml file: 'playbooks/green_blue_vars.yaml'
+    hosts = readYaml file: 'hosts.yaml'
 }
 
 pipeline {
