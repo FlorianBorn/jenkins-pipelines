@@ -16,6 +16,8 @@
   # vars:
   #   host_ip: "{{ green }}"
   #   host_port: 80
+  include_vars:
+    file: common_vars.yaml
   template:
       src: conf.j2
       dest: /etc/nginx/sites-available/conf
