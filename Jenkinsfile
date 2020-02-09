@@ -71,6 +71,7 @@ pipeline {
         }
     }
     stage('Switch') {
+        input "Switch Routing / Set green to prod?"
         agent {
           label "reverse-proxy"
         }
