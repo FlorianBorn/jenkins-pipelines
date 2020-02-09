@@ -23,23 +23,23 @@ pipeline {
       }
     }
 
-    stage('Configure Infrastructure') {
-      agent { label 'master'}
-      environment {
-          inventory_name = "inventory"
-          playbook_name = "webserver.yaml"
-      }
-      steps {
-        // Option 1 - Install Ansible Plugin and use the provided steps
-        // Option 2 - use shell commands 
-        dir("playbooks"){
-            sh "ansible-playbook -i ${inventory_name} ${playbook_name}"
-        }
-      }
-    }    
+    // stage('Configure Infrastructure') {
+    //   agent { label 'master'}
+    //   environment {
+    //       inventory_name = "inventory"
+    //       playbook_name = "webserver.yaml"
+    //   }
+    //   steps {
+    //     // Option 1 - Install Ansible Plugin and use the provided steps
+    //     // Option 2 - use shell commands 
+    //     dir("playbooks"){
+    //         sh "ansible-playbook -i ${inventory_name} ${playbook_name}"
+    //     }
+    //   }
+    // }    
     stage('Check HTML') {
         agent { 
-          label "${hosts.idle_host_name}-lbl"
+          label "green-lbl"
         }
         environment {
             html_dir = "website/"
@@ -51,24 +51,24 @@ pipeline {
         }
     }
 
-    stage('Deploy on Idle Server') {
+    stage('Deploy on Green') {
         agent { 
-          label "${hosts.idle_host_name}-lbl"
+          label "green-lbl"
         }      
         steps {
           
           echo 'hello from ${env.NODE_NAME}?'
           echo "hello from ${env.NODE_NAME}?"
           sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
-          // copy("website/my-website.html", "/var/www/html/")
-          // sh 'printenv | sort'           
-          // sh 'ls'
-          // sh 'whoami'
-
         }
     }
-    // stage('Test') {
-
+    stage('Test') {
+        agent {
+          label "green-lbl"
+        }
+        steps {
+          sh 'curl -f http://localhost/my-website.htmlHTML || exit 1'
+        }
     // }        
     
 
