@@ -1,5 +1,5 @@
 node {
-    hosts = readYaml file: 'hosts.yaml'
+    hosts = readYaml file: 'playbooks/green_blue_vars.yaml'
 }
 
 pipeline {
@@ -19,7 +19,7 @@ pipeline {
 
     stage('Example') {
       steps {
-        echo "${hosts.idle_host}"
+        echo "${hosts.idle_host_name}"
       }
     }
 
@@ -39,7 +39,7 @@ pipeline {
     }    
     stage('Check HTML') {
         agent { 
-          label "${hosts.idle_host}-lbl"
+          label "${hosts.idle_host_name}-lbl"
         }
         environment {
             html_dir = "website/"
@@ -53,7 +53,7 @@ pipeline {
 
     stage('Deploy on Idle Server') {
         agent { 
-          label "${hosts.idle_host}-lbl"
+          label "${hosts.idle_host_name}-lbl"
         }      
         steps {
           

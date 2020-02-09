@@ -20,9 +20,6 @@
   include_vars:
       file: green_blue_vars.yaml
       name: green_blue
-- name: print variable
-  debug:
-        msg: "Hello {{green_blue['active_host'] }} world!"
 - name: template config file to reverse-proxy
   template:
       src: conf.j2

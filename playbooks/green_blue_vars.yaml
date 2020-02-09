@@ -1,3 +1,5 @@
 active_host: "{{ hostvars['green'].ansible_host }}"
+active_host_name: green
 idle_host: "{{ hostvars['blue'].ansible_host }}"
+idle_host_name: blue
 port: 80
