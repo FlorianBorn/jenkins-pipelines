@@ -1,5 +1,5 @@
 node {
-    hosts = readYaml file: 'hosts.yaml'
+    def hosts = readYaml file: 'hosts.yaml'
     new_active_host = [''] 
 }
 
