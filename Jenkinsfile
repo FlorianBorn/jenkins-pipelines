@@ -1,5 +1,6 @@
 node {
     hosts = readYaml file: 'hosts.yaml'
+    new_active_host = [''] 
 }
 
 pipeline {
@@ -20,7 +21,7 @@ pipeline {
     stage('Example') {
       steps {
         echo "hey there!"
-        writeYaml file: 'host.yaml' data: ['foo':'bar']
+        writeYaml file: 'host.yaml' data: ['foo','bar']
       }
     }
 
