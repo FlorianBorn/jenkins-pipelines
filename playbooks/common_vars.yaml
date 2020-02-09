@@ -1,2 +1,2 @@
-active_host: green
-idle_host: blue
+active_host: "{{ hostvars['green'].ansible_host }}"
+idle_host: "{{ hostvars['blue'].ansible_host }}"
