@@ -21,7 +21,10 @@ pipeline {
     stage('Example') {
       environment{
         hosts2 = readYaml(file: 'hosts.yaml')
-        hosts['foo'] = 'bar'
+        def new_hosts = ['active_host': hosts.active_host,
+                         'idle_host': hosts.idle_host,
+                         'foo': 'bar']
+        //hosts['foo'] = 'bar'
         
       }
       steps {
