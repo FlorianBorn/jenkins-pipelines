@@ -1,5 +1,5 @@
 node {
-    hosts = readYaml file: 'hosts.yaml'
+    //hosts = readYaml file: 'hosts.yaml'
 }
 
 pipeline {
