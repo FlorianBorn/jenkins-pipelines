@@ -22,6 +22,8 @@ pipeline {
       steps {
         echo "hey there!"
         writeYaml(file: 'host.yaml', data: ['foo':'bar'])
+        hosts2 = readYaml(file: 'host.yaml')
+        echo(hosts2['foo'])
       }
     }
 
