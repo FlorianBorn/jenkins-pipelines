@@ -20,6 +20,7 @@ pipeline {
     stage('Example') {
       steps {
         echo "hey there!"
+        writeYaml file 'host.yaml' data ['foo':'bar']
       }
     }
 
@@ -76,6 +77,7 @@ pipeline {
         }
         steps {
           input "Switch Routing / Set green to prod?" 
+
           sh "echo switch router"
         }
     }     
