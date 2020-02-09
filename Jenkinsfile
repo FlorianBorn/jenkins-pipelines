@@ -20,7 +20,7 @@ pipeline {
     stage('Example') {
       steps {
         echo "hey there!"
-        writeYaml file 'host.yaml' data ['foo':'bar']
+        writeYaml file: 'host.yaml' data: ['foo':'bar']
       }
     }
 
