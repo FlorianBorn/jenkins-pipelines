@@ -19,7 +19,7 @@ pipeline {
 
     stage('Example') {
       steps {
-        echo "${hosts.idle_host_name}"
+        echo "hey there!"
       }
     }
 
