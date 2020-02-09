@@ -75,7 +75,7 @@ pipeline {
           label "reverse-proxy"
         }
         steps {
-
+          sh "echo switch router"
         }
     }     
     
