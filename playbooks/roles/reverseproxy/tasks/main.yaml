@@ -12,13 +12,15 @@
 #     src: /etc/nginx/sites-available/green_conf
 #     dest: /etc/nginx/sites-enabled/green_conf
 #     state: link
-- name: template config file to reverse-proxy
+
   # vars:
   #   host_ip: "{{ green }}"
   #   host_port: 80
+- name: include hosts (active, idle)
   include_vars:
       file: common_vars.yaml
       name: common
+- name: template config file to reverse-proxy
   template:
       src: conf.j2
       dest: /etc/nginx/sites-available/conf
