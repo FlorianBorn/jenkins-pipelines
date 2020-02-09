@@ -27,7 +27,7 @@ pipeline {
       steps {
         echo "hey there!"
         
-        writeYaml(file: 'host.yaml', data: hosts, overwrite=true)  // ['foo':'bar']
+        writeYaml(file: 'host.yaml', data: hosts)  // ['foo':'bar']
         echo(hosts2['foo'])
       }
     }
