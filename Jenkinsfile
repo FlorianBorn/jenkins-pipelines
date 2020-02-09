@@ -21,10 +21,11 @@ pipeline {
     stage('Example') {
       environment{
         hosts2 = readYaml(file: 'hosts.yaml')
+        
       }
       steps {
         echo "hey there!"
-        host['foo'] = 'bar'
+        hosts['foo'] = 'bar'
         writeYaml(file: 'host.yaml', data: host, overwrite=true)  // ['foo':'bar']
         echo(hosts2['foo'])
       }
