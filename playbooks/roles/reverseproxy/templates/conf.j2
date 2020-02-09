@@ -2,6 +2,6 @@ server {
         listen 80;
         listen [::]:80;
         location / {
-                proxy_pass {{ host_ip }}:{{ host_port }};
+                proxy_pass {{ green_blue.idle_host }}:{{ green_blue.port }};
         }
 }
