@@ -67,7 +67,7 @@ pipeline {
           label "green-lbl"
         }
         steps {
-          sh 'curl -f http://localhost/my-website.htmlHTML || exit 1'
+          sh 'curl -f http://localhost/my-website.html || exit 1'
         }
     }        
     
