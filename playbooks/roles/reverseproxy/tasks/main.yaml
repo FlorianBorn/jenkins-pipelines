@@ -22,7 +22,7 @@
       name: common
 - name: print variable
   debug:
-        msg: "Hello {{common.activa_host }} world!"
+        msg: "Hello {{common['active_host'] }} world!"
 - name: template config file to reverse-proxy
   template:
       src: conf.j2
