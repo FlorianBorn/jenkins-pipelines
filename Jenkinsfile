@@ -20,7 +20,7 @@ pipeline {
 
     stage('Example') {
       environment{
-        hosts2 = readYaml(file: 'host.yaml')
+        hosts2 = readYaml(file: 'hosts.yaml')
       }
       steps {
         echo "hey there!"
