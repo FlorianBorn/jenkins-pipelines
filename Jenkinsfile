@@ -69,58 +69,6 @@ pipeline {
         steps {
           sh 'curl -f http://localhost/my-website.htmlHTML || exit 1'
         }
-    // }        
+    }        
     
-
-//     stage('Deploy Green') {
-//       agent {
-//         label 'green-lbl'
-//       }
-//       when {
-//         beforeAgent true
-//         equals expected: 'green', actual: "${hosts.active_host}"
-//       }
-//     //   environment {
-//     //     active_server = 'green'
-//     //   }
-//       steps {
-//         sh 'printenv | sort'  
-//         echo 'hello from ${env.NODE_NAME}?'
-//         echo "hello from ${env.NODE_NAME}?"
-//         sh 'ls'
-//         sh 'whoami'
-//         sh 'sudo cp website/my-website.html /var/www/html/my-website.html'
-// //        sh 'echo ${active_host}'
-//         sh 'cat active-server.txt'
-//       }
-//     }
-
-//     stage('Deploy Blue') {
-//       agent {
-//         label 'blue-lbl'
-//       }
-//       when {
-//         beforeAgent true
-//         equals expected: 'blue', actual: "${hosts.active_host}"
-//       }
-
-//       steps {
-//         echo 'Im Blue!'
-//         sh 'printenv | sort'
-//         echo 'active host: $ACTIVE_HOST'
-//         echo 'idle host: $IDLE_HOST'
-//       }
-//     }
-
-//     stage('switch') {
-//         steps {
-//             echo "hi i'm switch!"
-//         }
-//     }
-
-  }
-//   environment {
-//     ACTIVE_HOST = 'cat active-server.txt'
-//     IDLE_HOST = 'cat idle-server.txt'
-//   }
 }
